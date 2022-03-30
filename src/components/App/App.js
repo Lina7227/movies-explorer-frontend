@@ -1,5 +1,9 @@
 import React from 'react';
-import ('./App.css');
+import { Route, Routes, Redirect, useHistory } from 'react-router-dom';
+import Main from '../Main/Main';
+import './App.css';
+
+
 
 
 function App() {
@@ -9,6 +13,10 @@ function App() {
   
   return (
     <div className="page">
+
+      <Routes>
+        <Route exact path="/" element={<Main />}/>
+      </Routes>
         
     </div>
   );
