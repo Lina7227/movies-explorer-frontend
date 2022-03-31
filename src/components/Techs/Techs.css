@@ -37,7 +37,7 @@
 
 .teachs__ietm {
     margin: 0;
-    padding: 21px 0 22px;
+    padding: 21px 0 21px;
     background-color: #E8E8E8;
     border-radius: 10px;
     font-weight: 400;
@@ -45,4 +45,51 @@
     line-height: 17px;
     text-align: center;
     letter-spacing: -0.04em;
+    max-width: 90px;
+}
+
+@media (max-width: 870px) {
+    .techs {
+        padding-top: 90px;
+        padding-bottom: 90px;
+    }
+
+    .techs__subtitle {
+        margin: 80px 0 22px;
+    }
+
+    .techs__text {
+        font-size: 12px;
+        line-height: 18px;
+    }
+
+    .teachs__table {
+        margin: 83px 0 0;
+    }
+
+    .teachs__ietm {
+        width: 86px;
+    }
+}
+
+@media (max-width: 400px) {
+    .techs {
+        padding-top: 70px;
+        padding-bottom: 70px;
+    }
+
+    .techs__subtitle {
+        margin: 60px 0 24px;
+        font-size: 30px;
+        line-height: 36px;
+    }
+
+    .techs__text {
+        font-size: 11px;
+        line-height: 16px;
+    }
+
+    .teachs__table {
+        margin: 50px 0 0;
+    }
 }

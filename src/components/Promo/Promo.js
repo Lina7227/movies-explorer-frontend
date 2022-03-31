@@ -7,9 +7,9 @@ function Promo() {
 
     const ref = React.useRef(null);
 
-    function scrollThrough() {
-        ref.current.viewing({behavior: "smooth"});
-    }
+  function scrollThrough() {
+    ref.current.scrollIntoView({ behavior: "smooth" });
+  }
 
     
     
@@ -20,11 +20,12 @@ function Promo() {
                 <h1 className="promo__title">Учебный проект студента факультета Веб-разработки.</h1>
                 <p className="promo__subtitle">Листайте ниже, чтобы узнать больше про этот проект и его создателя.</p>
                 <button
-                    ref={ref}
-                    onClick={scrollThrough}
                     type="button"
                     aria-label="посмотреть проект"
-                    className="promo__button">Узнать больше</button>
+                    className="promo__button"
+                    ref={ref}
+                    onClick={scrollThrough}
+                    >Узнать больше</button>
             </div>
             <img
                 className="promo__image"

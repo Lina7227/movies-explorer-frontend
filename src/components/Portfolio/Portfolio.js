@@ -10,9 +10,10 @@ function Portfolio() {
                 <li className="portfolio__item">
                     <p className="portfolio__subtitle">Статичный сайт</p>
                     <a
-                        className="portfolio__link"
+                        className="portfolio__link link-click"
                         href="https://lina7227.github.io/how-to-learn/"
                         target="_blank"
+                        rel = "noreferrer noopener"
                     >
                         <img className="portfolio__icon" alt="иконка перехода на проект" src={arrow}></img>
                     </a>
@@ -20,9 +21,10 @@ function Portfolio() {
                 <li className="portfolio__item">
                     <p className="portfolio__subtitle">Адаптивный сайт</p>
                     <a
-                        className="portfolio__link"
+                        className="portfolio__link link-click "
                         href="https://lina7227.github.io/russian-travel/"
                         target="_blank"
+                        rel = "noreferrer noopener"
                     >
                         <img className="portfolio__icon" alt="иконка перехода на проект" src={arrow}></img>
                     </a>
@@ -30,9 +32,10 @@ function Portfolio() {
                 <li className="portfolio__item">
                     <p className="portfolio__subtitle">Одностраничное приложение</p>
                     <a
-                        className="portfolio__link"
+                        className="portfolio__link link-click "
                         href="https://github.com/Lina7227/react-mesto-api-full"
                         target="_blank"
+                        rel = "noreferrer noopener"
                     >
                         <img className="portfolio__icon" alt="иконка перехода на проект" src={arrow}></img>
                     </a>

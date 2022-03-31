@@ -37,8 +37,8 @@
 }
 
 .promo__button {
-    max-width: 131px;
-    padding: 10px 20px;
+    max-width: 129px;
+    padding: 9px 19px;
     border-radius: 3px;
     border: 1px solid rgba(0,0,0,0.6);
     box-sizing: border-box;
@@ -60,4 +60,54 @@
     height: 304px;
     object-fit: contain;
     margin: 0;
+}
+
+@media (max-width: 870px) {
+    .promo {
+        padding: 140px 44px 86px;
+        flex-direction: column-reverse;
+    }
+
+    .promo__title {
+        font-size: 40px;
+        line-height: 50px;
+        text-align: center;
+        margin: 0 auto;
+    }
+
+    .promo__subtitle {
+        margin: 22px auto 92px;
+        text-align: center;
+    }
+
+    .promo__button {
+        margin: 0 auto;
+    }
+
+    .promo__image {
+        margin: 0 auto 48px;
+    }
+}
+
+@media (max-width: 460px) {
+    .promo {
+        padding: 70px 10px 30px;
+        flex-direction: column-reverse;
+    }
+
+    .promo__title {
+        font-size: 30px;
+        line-height: 38px;
+    }
+
+    .promo__subtitle {
+        margin: 24px auto 80px;
+        width: 260px;
+    }
+
+    .promo__image {
+        margin: 0 auto 44px;
+        width: 210px;
+        height: 206px;
+    }
 }

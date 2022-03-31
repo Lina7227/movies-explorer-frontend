@@ -18,3 +18,23 @@
     border-bottom-style: solid;
     border-bottom-color: #000000;
 }
+
+@media (max-width: 870px) {
+    .block-section {
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+}
+
+@media (max-width: 460px) {
+    .block-section {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+    .block-section__title {
+        font-size: 18px;
+        line-height: 22px;
+        padding: 0 0 28px;
+    }
+}

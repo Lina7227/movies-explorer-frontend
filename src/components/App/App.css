@@ -19,3 +19,15 @@
     "content"
     "footer";
 }
+
+.link-click {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    transition: .4s ease-in-out;
+    cursor: pointer;
+}
+
+.link-click:hover {
+    opacity: 0.6;
+}
