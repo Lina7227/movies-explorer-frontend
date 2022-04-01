@@ -38,3 +38,17 @@
     height: 38px;
     object-fit: contain;
 }
+
+@media (max-width: 800px) {
+    .header {
+        padding: 18px 30px;
+    }
+    
+}
+
+@media (max-width: 400px) {
+    .header {
+        padding: 18px 14px;
+    }
+    
+}
