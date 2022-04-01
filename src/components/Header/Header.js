@@ -1,9 +1,10 @@
 import React from 'react';
 import { useLocation, NavLink } from 'react-router-dom';
 import logo from '../../images/logo.svg'
+import Navigation from '../Navigation/Navigation';
 import './Header.css';
 
-function Header() {
+function Header(props) {
     const location = useLocation();
     const islocationBasic = location.pathname === "/";
     const islocationPrivateIn = location.pathname === "/sign-in";
@@ -18,6 +19,7 @@ function Header() {
             alt="Логотип"
           />
             </NavLink>
+            {!(islocationPrivateIn || islocationPrivateUp) && <Navigation islogOn={props.islogOn} />}
         </header>
     );
 }

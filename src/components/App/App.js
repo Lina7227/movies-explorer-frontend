@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Routes, Redirect, useHistory } from 'react-router-dom';
+import { Route, Routes, Redirect, useNavigate } from 'react-router-dom';
 import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
