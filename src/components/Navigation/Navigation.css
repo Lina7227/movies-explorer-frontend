@@ -2,6 +2,8 @@
     margin: 0;
     padding: 0;
     display: flex;
+    width: 100%;
+    position: relative;
 }
 
 .navigation__hidden {
@@ -24,7 +26,6 @@
     margin: 0;
     padding: 0;
     width: 100%;
-    display: flex;
     box-sizing: border-box;
     animation: .4s ease-in-out;
     animation-fill-mode: both;
@@ -34,8 +35,7 @@
     max-width: 520px;
     min-height: 100vh;
     margin: 0;
-    padding: 22px 22px 100px;  
-    /* выровнять отступы */
+    padding: 159px 90px 90px;  
     position: absolute;
     top: 0;
     right: 0;
@@ -46,6 +46,7 @@
 .navigation__container-auth {
     display: flex;
     justify-content: space-between;
+    max-width: 203px;
     margin: 0 0 0 auto;
     font-size: 12px;
     font-weight: 500;
@@ -62,7 +63,7 @@
 }
 
 .navigation__nav-item:hover {
-    opacity: 0.6;
+    opacity: .6;
 }
 
 .navigation__nav-item__button {
@@ -80,12 +81,15 @@
 }
 
 .navigation__nav-item_type_column {
-    padding: 0 0 4px;
-    border-bottom: 2px solid #000000;
+    border-bottom: 2px solid #fff;
+}
+
+.navigation__nav-item_type_column:hover {
+    border-bottom: 2px solid #000;
 }
 
 .navigation__conteiner-centered {
-    margin: 0;
+    margin: 0 auto;
     padding: 0;
     display: flex;
     justify-content: space-between;
@@ -102,28 +106,21 @@
 .navigate__button-close {
     width: 22px;
     height: 22px;
-    display: none;
-    /* justify-self: end; */
+    /* display: none; */
     background-color: transparent;
+    background-image: url("/src/images/close.svg");
+    background-size: 100% 100%;
     cursor: pointer;
     transition:  .4s ase-in-out;
     padding: 0;
     border: none;
+    position: absolute;
+    top: -130px;
+    right: -46px;
 }
 
 .navigate__button-close:hover {
     opacity: 0.6;
-}
-
-.navigate__button-close::before {
-    position: absolute;
-    left: 50%;
-    top: 0;
-    height: 100%;
-    width: 3px;
-    content: ' ';
-    background-color: #000000;
-    transform: rotate(45deg);
 }
 
 .navigate__button-close_active {
@@ -134,7 +131,7 @@
     display: grid;
     column-gap: 16px;
     grid-template-columns: repeat(2,max-content);
-    margin: 0 auto;
+    margin: 0 364px 0 426px;
     padding: 0;
     font-size: 13px;
     font-weight: 400;
@@ -158,20 +155,11 @@
 }
 
 .navigation__container-office_type_column {
-    margin: 0 auto 90px;
+    margin: 260px auto 0;
 }
 
 .navigation__burger-menu {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 44px;
-    width: 44px;
-    cursor: pointer;
-    transition: opacity 0.3s;
-    background-color: transparent;
-    padding: 4px 4px;
-    margin: 0;
+    display: none;
 }
 
 .navigation__burger-menu:hover {
@@ -183,15 +171,82 @@
 }
 
 .navigation__burger-item {
-    margin: 0;
+    margin: 0 auto;
     width: 28px;
     height: 3px;
-    background-color: #000;
+    background-color: #000000;
 }
 
 @media (max-width: 800px) {
+    .navigation__burger-menu {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 22px;
+        width: 30px;
+        cursor: pointer;
+        transition: opacity 0.3s;
+        background-color: transparent;
+        padding: 0;
+        margin: 0;
+        position:absolute;
+        top: -18px;
+        right: 30px;
+    }
+
     .navigation__block_inactive {
         display: none;
+    }
+
+    .navigation__container-film {
+        gap: 28px;
+        margin: 0;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 22px;
+    }
+
+    .navigation__nav-item:hover {
+        opacity: .6;
+    }
+}
+
+@media (max-width: 450px) {
+    .navigation__burger-menu {
+        height: 22px;
+        width: 24px;
+        top: -18px;
+        right: 0;
+    }
+
+    .navigation__burger-item {
+        width: 22px;
+    }
+
+    .navigation__container-film {
+        gap: 24px;
+    }
+
+    
+    .navigation__colunm {
+        max-width: 520px;
+        min-height: 100vh;
+        margin: 0;
+        padding: 144px 10px 46px;  
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 1;
+        background-color: #FAFAFA;
+    }
+
+    .navigate__button-close {
+        top: -130px;
+        right: 0;
+    }
+
+    .navigation__container-office_type_column {
+        margin: 440px auto 0;
     }
 
 }

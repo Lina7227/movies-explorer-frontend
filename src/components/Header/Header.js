@@ -11,7 +11,7 @@ function Header(props) {
     const islocationPrivateUp = location.pathname === "/sign-up";
 
     return(
-        <header className={`header ${islocationBasic ? "header_type_grey" : ""} || ${islocationPrivateIn || islocationPrivateUp ? "header_type_private" : ""}`}>
+        <header className={`header ${islocationBasic ? "header_type_grey" : ""} ${(islocationPrivateIn || islocationPrivateUp) ? "header_type_private" : ""}`}>
             <NavLink className="header__logo-click" to={"/"}>
             <img
             className="header__logo"

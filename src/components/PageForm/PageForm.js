@@ -1,8 +1,10 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import './PageForm.css';
 
 function PageForm(props) {
+    const location = useLocation();
+    const islocationPrivateUp = location.pathname === "/sign-up";
     const [buttonState, setButtonState] = React.useState(true);
 
     return (
@@ -20,7 +22,7 @@ function PageForm(props) {
 
                 <button 
                     type="submit" 
-                    className={`auth__button ${props.logOnIn ? "auth__button_active" : ""} ${!buttonState ? "auth__button_inactive" : ""}`}
+                    className={`auth__button ${props.logOnIn ? "auth__button_active" : ""} ${!buttonState ? "auth__button_inactive" : ""} ${islocationPrivateUp ? "auth__button_active_up" : " "}`}
                     disabled={!buttonState ? true : ""}>
                     {props.buttonText}
                 </button>

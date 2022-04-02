@@ -13,7 +13,7 @@ import './App.css';
 
 function App() {
 
-  const [islogOn, setlogOn] = React.useState(false);
+  const [islogOn, setlogOn] = React.useState(null);
   const navigate = useNavigate();
 
   function handleSignIn() {
@@ -36,7 +36,7 @@ function App() {
   
   return (
     <div className="page">
-      <Header />
+      <Header islogOn={islogOn} />
       <Routes>
         <Route exact path="/" element={<Main />}/>
         <Route exact path="/sign-up" element={<Register onSubmit={handleSignUp} />}/>
