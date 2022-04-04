@@ -20,9 +20,7 @@
 }
 
 .footer__cotainer {
-    border-top-width: 1px;
-    border-top-style: solid;
-    border-top-color: #A0A0A0;
+    border-top: 1px solid #E8E8E8;
     margin: 20px 0 0;
     padding: 20px 0 0;
     display: flex;

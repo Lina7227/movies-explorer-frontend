@@ -28,7 +28,6 @@
     width: 100%;
     box-sizing: border-box;
     animation: .4s ease-in-out;
-    animation-fill-mode: both;
 }
 
 .navigation__colunm {
@@ -39,7 +38,7 @@
     position: absolute;
     top: 0;
     right: 0;
-    z-index: 1;
+    z-index: 10000;
     background-color: #FAFAFA;
 }
 
@@ -177,6 +176,12 @@
     background-color: #000000;
 }
 
+@media (max-width: 1270px) {
+    .navigation__container-film {
+        margin: 0 auto;
+    }
+}
+
 @media (max-width: 800px) {
     .navigation__burger-menu {
         display: flex;
@@ -191,7 +196,7 @@
         margin: 0;
         position:absolute;
         top: -18px;
-        right: 30px;
+        right: 0;
     }
 
     .navigation__block_inactive {
@@ -236,7 +241,7 @@
         position: absolute;
         top: 0;
         right: 0;
-        z-index: 1;
+        z-index: 10000;
         background-color: #FAFAFA;
     }
 

@@ -17,9 +17,9 @@ function Register(props) {
                 onRedirectLink="/sign-in"
                 textLinkRedirect="Войти"
             >
-                <FormName logOnIn={true} />
-                <FormEmail logOnIn={true} />
-                <FormPassword logOnIn={true} />
+                <FormName />
+                <FormEmail />
+                <FormPassword />
 
             </PageForm>
         </section>

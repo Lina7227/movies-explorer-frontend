@@ -11,3 +11,10 @@
     font-weight: 400;
     src: url('./Inter-Regular.woff2') format('woff2'); 
 }
+
+@font-face {
+    font-family: 'Suisse Intl';
+    font-style: normal;
+    font-weight: 400;
+    src: url('./Suisse-Intl.woff') format('woff'); 
+}

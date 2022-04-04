@@ -6,6 +6,7 @@ import Header from '../Header/Header';
 import Profile from '../Profile/Profile';
 import Login from '../Login/Login';
 import Register from '../Register/Register';
+import Movies from '../Movies/Movies';
 import './App.css';
 
 
@@ -42,6 +43,7 @@ function App() {
         <Route exact path="/sign-up" element={<Register onSubmit={handleSignUp} />}/>
         <Route exact path="/sign-in" element={<Login onSubmit={handleSignIn} />}/>
         <Route exact path="/profile" element={<Profile onSubmit={handleSignUp} />}/>
+        <Route exact path="/movies" element={<Movies />}/>
       </Routes>
       
       <Footer />
