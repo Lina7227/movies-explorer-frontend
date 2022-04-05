@@ -33,6 +33,8 @@
 }
 
 .not-found__text-link {
+    background-color: inherit;
+    border: none;
     margin: 0 auto;
     padding: 0;
     text-decoration: none;
