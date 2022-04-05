@@ -3,10 +3,8 @@
     flex-direction: row;
     justify-content: space-between;
     padding: 0 0 0 29px;
+    margin: 0;
     border-left: 1px solid #CBCBCB;
-    position: absolute;
-    top: 20px;
-    right: 19px;
 }
 
 .filter__container {
@@ -24,12 +22,12 @@
     height: 20px;
     width: 36px;
     background-color: #2BE080;
-    position: relative;
     margin: 7px 14px 7px 0;
     padding: 0;
     transition: background-color,transform .4s;
     border-radius: 20px;
     cursor: pointer;
+    z-index: 1;
 }
   
 .filter__other::before {
@@ -39,9 +37,8 @@
     content: "";
     background-color: #FFFFFF;
     border-radius: 50%;
-    position: absolute;
-    top:50%;
-    left:70%;
+    margin-top: 18px;
+    margin-left: 21px;
     transform: translate(-50%,-50%);
 }
   
@@ -53,9 +50,8 @@
     background-color: #FFFFFF;
     border: 1px solid #EBEBEB;
     border-radius: 50%;
-    position: absolute;
-    top:50%;
-    left:30%;
+    margin-top: 14px;
+    margin-left:10px;
     transform: translate(-50%,-50%);
 }
 
@@ -88,14 +84,9 @@
 
 @media (max-width: 632px) {
     .filter {
-        top: 118px;
-        right: 35%;
+        justify-content: center;
         border-left: none;
-    }
-}
-
-@media (max-width: 400px) {
-    .filter {
-        right: 25%;
+        padding: 0;
+        margin: 0 auto;
     }
 }

@@ -14,7 +14,7 @@ function Footer() {
             {!islocationPrivate &&
                 <>
                     <p className="footer__text footer__text_subtitle">Учебный проект Яндекс.Практикум х BeatFilm.</p>
-                    <div className="footer__cotainer">
+                    <div className="footer__container">
                         <p className="footer__text_copyright footer__text">&copy; 2022</p>
                         <nav className="footer__contact">
                             <a

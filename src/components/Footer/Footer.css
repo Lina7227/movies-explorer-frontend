@@ -17,9 +17,10 @@
 
 .footer__text_subtitle {
     text-align: center;
+    color: #A0A0A0;
 }
 
-.footer__cotainer {
+.footer__container {
     border-top: 1px solid #E8E8E8;
     margin: 20px 0 0;
     padding: 20px 0 0;
@@ -53,7 +54,7 @@
         line-height: 15px;
     }
 
-    .footer__cotainer {
+    .footer__container {
         margin: 21px 0 0;
         padding: 30px 0 0;
         display: flex;
