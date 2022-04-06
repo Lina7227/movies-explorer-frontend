@@ -8,7 +8,7 @@ function Profile(props) {
         <section className="profile">
             <PageForm
                 name="profile"
-                title="Привет, Виталий!"
+                title="Привет, Елена!"
                 onSubmit={props.onSubmit}
                 logOnIn={false}
                 buttonText="Редактировать"

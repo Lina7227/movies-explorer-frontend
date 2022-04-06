@@ -10,6 +10,7 @@ import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
 import movies from '../../utils/movies';
 import PageNotFound from '../PageNotFound/PageNotFound';
+import PopupError from '../PopupError/PopupError';
 import './App.css';
 let numberMovies = 0;
 
@@ -76,6 +77,7 @@ function App() {
       </Routes>
       
       <Footer />
+      <PopupError />
     </div>
   );
 }

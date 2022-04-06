@@ -5,10 +5,6 @@ import './PageNotFound.css';
 function PageNotFound() {
     const navigate = useNavigate();
 
-    // function handleGoBack() {
-    //     navigate.go();
-    // }
-
     return (
       <section className="content not-found">
             <h2 className="not-found__title">404</h2>

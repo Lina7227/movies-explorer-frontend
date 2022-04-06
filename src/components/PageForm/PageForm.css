@@ -25,6 +25,11 @@
     text-align: left;
 }
 
+
+.auth__welcome_profile {
+    margin: 0 0 123px;
+}
+
 .auth__form {
     margin: 0 auto;
     padding: 0;
@@ -62,11 +67,15 @@
     font-weight: 500;
     font-size: 14px;
     line-height: 17px;
-    margin: 179px 0 16px;
+    margin: 212px 0 16px;
+}
+
+.auth__button_profile {
+    margin: 160px 0 0;
 }
 
 .auth__button_active_up {
-    margin: 134px 0 16px;
+    margin: 154px 0 16px;
 }
 
 .auth__button_inactive {
@@ -108,14 +117,31 @@
     opacity: 0.6;
 }
 
+@media (max-width: 800px) {
+    .auth {
+        margin: 40px auto 0;
+    }
+    .auth__welcome_profile {
+        margin: 196px 0 96px;
+    }
+
+    .auth__button_profile {
+        margin: 150px 0 0;
+    }
+}
+
 @media (max-width: 450px) {
 
     .auth {
-        margin: 54px auto 0;
+        margin: 56px auto 0;
     }
 
     .auth__welcome {
-        margin: 0 0 80px;
+        margin: 0 0 70px;
+    }
+
+    .auth__welcome_profile {
+        margin: 14px 0 80px;
     }
 
     .auth__welcome_login {
@@ -128,19 +154,21 @@
 
     .auth__button {
         width: 260px;
-        margin: 200px 0 0;
-    }
-
-    .auth__button {
         margin: 340px 0 0;
+        font-size: 12px;
+        line-height: 15px;
     }
 
     .auth__button_active {
-        margin: 290px 0 14px;
+        margin: 310px 0 14px;
     }
 
     .auth__button_active_up {
-        margin: 230px 0 14px;
+        margin: 250px 0 14px;
+    }
+
+    .auth__button_profile {
+        margin: 327px 0 0;
     }
 
     .auth__redirect-text {

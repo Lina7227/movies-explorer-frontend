@@ -77,8 +77,8 @@ function Navigation(props) {
                         </button>
                         <div className={`navigation__container-film ${isMenu ? "navigation__container-film_type_column" : ""}`}>
                             {isMenu && <NavLink onClick={handleBasic} className={`navigation__nav-item ${({ isActive }) => isActive && islocationBasic ? "navigation__nav-item_type_column" : ""}`} to={"/"}>Главная</NavLink>}
-                            <NavLink onClick={handleMovies} className={`navigation__nav-item ${isActiveMovies && !isMenu ? "navigation__nav-item_active" : "navigation__nav-item_type_column"}`} to={"/movies"}>Фильмы</NavLink>
-                            <NavLink onClick={handleSavedMovies} className={`navigation__nav-item ${isActiveMoviesSaved && !isMenu ? "navigation__nav-item_active" : "navigation__nav-item_type_column"}`} to={"/saved-movies"}>Сохраненные фильмы</NavLink>
+                            <NavLink onClick={handleMovies} className={`navigation__nav-item ${isActiveMovies && !isMenu ? "navigation__nav-item_active" : ""} ${isActiveMovies && isMenu ? "navigation__nav-item_type_column" : ""}`} to={"/movies"}>Фильмы</NavLink>
+                            <NavLink onClick={handleSavedMovies} className={`navigation__nav-item ${isActiveMoviesSaved && !isMenu ? "navigation__nav-item_active" : ""} ${isActiveMoviesSaved && isMenu ? "navigation__nav-item_type_column" : ""}`} to={"/saved-movies"}>Сохраненные фильмы</NavLink>
                         </div>
                         <div className={`navigation__container-office ${isMenu ? "navigation__container-office_type_column " : ""}`}>
                             <NavLink onClick={handleProfile} className="navigation__nav-item" to={"/profile"}>

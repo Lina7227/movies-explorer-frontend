@@ -10,7 +10,7 @@ function MoviesCardList(props) {
 
     return (
         <section className="movies-list">
-            {!props.isMovies.length && <NoResult />}
+             {/* <NoResult /> */}
 
             <ul className="movies-list__table">
                 {

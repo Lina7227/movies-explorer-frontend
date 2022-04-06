@@ -18,25 +18,25 @@ function Footer() {
                         <p className="footer__text_copyright footer__text">&copy; 2022</p>
                         <nav className="footer__contact">
                             <a
-                                href="https://www.linkedin.com/in/linakricosheina7227/"
+                                href="https://practicum.yandex.ru"
                                 target="_blank"
                                 className="footer__link link-click"
                                 rel = "noreferrer noopener">
                                 <p className="footer__text_link-text footer__text">Яндекс.Практикум</p>
                             </a>
                             <a
-                                href="https://www.linkedin.com/in/linakricosheina7227/"
+                                href="https://github.com/yandex-praktikum"
                                 target="_blank"
                                 className="footer__link link-click"
                                 rel = "noreferrer noopener">
                                 <p className="footer__text_link-text footer__text">Github</p>
                             </a>
                             <a
-                                href="https://www.linkedin.com/in/linakricosheina7227/"
+                                href="https://vk.com/yandex.practicum"
                                 target="_blank"
                                 className="footer__link link-click"
                                 rel = "noreferrer noopener">
-                                <p className="footer__text_link-text footer__text">Facebook</p>
+                                <p className="footer__text_link-text footer__text">ВКонтакте</p>
                             </a>
                         </nav>
                     </div>

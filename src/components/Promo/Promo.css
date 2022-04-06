@@ -64,7 +64,7 @@
 
 @media (max-width: 870px) {
     .promo {
-        padding: 140px 44px 86px;
+        padding: 140px 44px 76px;
         flex-direction: column-reverse;
     }
 
@@ -98,6 +98,7 @@
     .promo__title {
         font-size: 30px;
         line-height: 38px;
+        letter-spacing: -0.04em;
     }
 
     .promo__subtitle {

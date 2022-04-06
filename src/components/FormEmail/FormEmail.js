@@ -12,21 +12,21 @@ function FormEmail() {
     }
 
     return (
-        <div className="password__container">
-            <label htmlFor="password" className={`label-password ${!islocationProfile ? "label-password_active" : ""}`}>E-mail</label>
+        <div className="info__container">
+            <label htmlFor="email" className={`info__label ${!islocationProfile ? "info__label_active" : ""}`}>E-mail</label>
     
             <input 
             id="email" 
             name="email" 
             type="email" 
-            className={`password__input ${!islocationProfile ? "password__input_active" : ""} ${!isCorrectly ? "password__input_error" : "" }`}
+            className={`info__input ${!islocationProfile ? "info__input_active" : ""} ${islocationProfile ? "info__input_profile" : ""} ${!isCorrectly ? "info__input_error" : "" }`}
             required
             placeholder="E-mail"
             minLength="2"
             maxLength="30"
             onChange={handleChange}
             />
-            <span className={`password__error ${!isCorrectly ? "password__error_type_active" : "" }`}>Что-то пошло не так...</span>
+            <span className={`info__error ${!isCorrectly ? "pinfo__error_active" : "" }`}>Что-то пошло не так...</span>
         </div>
     );
 }

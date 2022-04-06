@@ -25,9 +25,12 @@
     display: flex;
     justify-content: space-between;
     flex-direction: row;
-    border-bottom-width: 1px;
-    border-bottom-style: solid;
-    border-bottom-color: #000000;
+    border-bottom: 1px solid #000000;
+}
+
+.portfolio__item:nth-of-type(3) {
+    border-bottom: none;
+    margin: 0;
 }
 
 .portfolio__subtitle {
@@ -48,7 +51,7 @@
 @media (max-width: 870px) {
     .portfolio {
         padding-top: 0;
-        padding-bottom: 90px;
+        padding-bottom: 72px;
     }
 
     .portfolio__subtitle {

@@ -12,21 +12,21 @@ function FormPassword() {
     }
 
     return (
-        <div className="password__container">
-            <label htmlFor="password" className={`label-password ${!islocationProfile ? "label-password_active" : ""}`}>Пароль</label>
+        <div className="info__container">
+            <label htmlFor="password" className={`info__label ${!islocationProfile ? "info__label_active" : ""}`}>Пароль</label>
     
             <input 
             id="password" 
             name="password" 
             type="password" 
-            className={`password__input ${!islocationProfile ? "password__input_active" : ""} ${!isCorrectly ? "password__input_error" : "" }`}
+            className={`info__input ${!islocationProfile ? "info__input_active" : ""} ${!isCorrectly ? "info__input_error" : "" }`}
             required
             placeholder="Пароль"
             minLength="6"
             maxLength="20"
             onChange={handleChange}
             />
-            <span className={`password__error ${!isCorrectly ? "password__error_type_active" : "" }`}>Что-то пошло не так...</span>
+            <span className={`info__error ${!isCorrectly ? "pinfo__error_active" : "" }`}>Что-то пошло не так...</span>
         </div>
     );
 }

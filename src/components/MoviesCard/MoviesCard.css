@@ -103,7 +103,13 @@
     visibility: hidden;
 }
 
-.movies-card__image {
+.card__trailer {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+
+.card__image {
     width: 220px;
     height: 122px;
     margin: 0;
@@ -130,7 +136,7 @@
         width: 200px;
     }
 
-    .movies-card__image {
+    .card__image {
         width: 300px;
         height: 168px;
     }
