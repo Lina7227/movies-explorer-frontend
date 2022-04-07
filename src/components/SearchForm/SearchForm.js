@@ -13,7 +13,6 @@ function SearchForm() {
                 <form
                     onSubmit={handleSubmit}
                     name="search-films" 
-                    noValidate
                     className="form-search">
                         <div className="search-films__container search-films__container_decktop">
                             <svg className="search-films__icon"></svg>
@@ -23,6 +22,7 @@ function SearchForm() {
                             type="text" 
                             className="search-films__input"
                             required
+                            minLength="2"
                             placeholder="Фильм"
                             />
                             <button

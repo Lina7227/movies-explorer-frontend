@@ -16,8 +16,7 @@ function PageForm(props) {
             <form
                 onSubmit={props.onSubmit}
                 name={`${props.name}`} 
-                className="auth__form"
-                noValidate>
+                className="auth__form">
 
                     {props.children}
 
