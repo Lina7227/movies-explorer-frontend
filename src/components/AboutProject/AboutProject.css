@@ -1,0 +1,123 @@
+.project {
+    padding-top: 110px;
+    padding-bottom: 100px;
+}
+
+.project__container {
+    display: grid;
+    grid-template-columns: minmax(min-content, 550px) minmax(min-content, 550px);
+    column-gap: 40px;
+    margin: 0;
+    padding: 70px 0 110px;
+}
+
+.project__subtitle {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    margin: 0;
+    letter-spacing: -0.04em;
+    order: -1;
+}
+
+.project__text {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    margin: 26px 0 0;
+}
+
+.project__period {
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+}
+
+.project__period-block {
+    min-width: 100px;
+    margin: 0 0 14px;
+    padding: 9px 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 17px;
+    text-align: center;
+    color: #FFFFFF;
+    background-color: #3456F3;
+    order: -1;
+}
+
+.project__period-block_type_grey {
+    background-color: #F2F2F2;
+    color: #000000;
+}
+
+.project__caption {
+    font-family: 'Suisse Intl',  Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 17px;
+    color: #A0A0A0;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+@media (max-width: 870px) {
+    .project {
+        padding-top: 90px;
+        padding-bottom: 90px;
+    }
+
+    .project__container {
+        column-gap: 30px;
+        padding: 70px 0 93px;
+    }
+
+    .project__text {
+        font-size: 12px;
+        line-height: 18px;
+        margin: 22px 0 0;
+    }
+}
+
+@media (max-width: 400px) {
+    .project {
+        padding-top: 70px;
+        padding-bottom: 70px;
+    }
+
+    .project__container {
+        grid-template-columns: unset;
+        column-gap: 30px;
+        padding: 60px 0;
+    }
+
+    .project__subtitle {
+        font-size: 18px;
+        line-height: 22px;
+        order: unset;
+    }
+
+    .project__text {
+        font-size: 11px;
+        line-height: 16px;
+        margin: 16px 0 0;
+    }
+
+    .project__text:first-of-type {
+        padding-bottom: 56px;
+    }
+
+    .project__period-block {
+        margin: 0 0 10px;
+        padding: 11px 0;
+        font-size: 11px;
+        line-height: 13px;
+    }
+
+    .project__caption {
+        font-size: 11px;
+        line-height: 13px;
+    }
+}

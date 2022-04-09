@@ -1,0 +1,114 @@
+.promo {
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 75px 70px;
+    background-color: #DDDEE3;
+    margin: 0 auto;
+}
+
+.promo__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin: 0;
+    padding: 0;
+}
+
+.promo__title {
+    font-size: 50px;
+    font-weight: 400;
+    line-height: 58px;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    max-width: 640px;
+}
+
+.promo__subtitle {
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 16px;
+    opacity: 0.5;
+    margin: 36px 0 146px;
+    padding: 0;
+    text-align: left;
+    max-width: 310px;
+}
+
+.promo__button {
+    max-width: 129px;
+    padding: 9px 19px;
+    border-radius: 3px;
+    border: 1px solid rgba(0,0,0,0.6);
+    box-sizing: border-box;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 16px;
+    background-color: transparent;
+    cursor: pointer;
+    margin: 0;
+    transition: 2s;
+}
+
+.promo__button:hover {
+    opacity: 0.6;
+}
+
+.promo__image {
+    width: 310px;
+    height: 304px;
+    object-fit: contain;
+    margin: 0;
+}
+
+@media (max-width: 870px) {
+    .promo {
+        padding: 140px 44px 76px;
+        flex-direction: column-reverse;
+    }
+
+    .promo__title {
+        font-size: 40px;
+        line-height: 50px;
+        text-align: center;
+        margin: 0 auto;
+    }
+
+    .promo__subtitle {
+        margin: 22px auto 92px;
+        text-align: center;
+    }
+
+    .promo__button {
+        margin: 0 auto;
+    }
+
+    .promo__image {
+        margin: 0 auto 48px;
+    }
+}
+
+@media (max-width: 460px) {
+    .promo {
+        padding: 70px 10px 30px;
+        flex-direction: column-reverse;
+    }
+
+    .promo__title {
+        font-size: 30px;
+        line-height: 38px;
+        letter-spacing: -0.04em;
+    }
+
+    .promo__subtitle {
+        margin: 24px auto 80px;
+        width: 260px;
+    }
+
+    .promo__image {
+        margin: 0 auto 44px;
+        width: 210px;
+        height: 206px;
+    }
+}
