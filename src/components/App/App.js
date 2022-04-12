@@ -8,19 +8,61 @@ import Login from '../Login/Login';
 import Register from '../Register/Register';
 import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
-import movies from '../../utils/movies';
+// import movies from '../../utils/movies';
 import PageNotFound from '../PageNotFound/PageNotFound';
 import PopupError from '../PopupError/PopupError';
+import useDisplayMovies from '../../utils/useDisplayMovies';
+import useDeviceResize from '../../utils/useDeviceResize';
+import useOfFilterAndSearch from '../../utils/useOfFilterAndSearch';
 import './App.css';
-let numberMovies = 0;
-
 
 
 function App() {
   const [islogOn, setlogOn] = React.useState(false);
   const [isMovies, setIsMovies] = React.useState([]);
-  const [allMovies, setAllMovies] = React.useState(false);
+  const [storedMovies, setStoredMovies] = React.useState([]);
+  // const [allMovies, setAllMovies] = React.useState(false);
+  const [isSearching, setIsSearching] = React.useState(null);
+  const [isErrorMovies, setErrorMovies] = React.useState(null);
   const navigate = useNavigate();
+
+  const {
+    width,
+    checkDeviceWidth,
+    changeDeviceWidth,
+  } = useDeviceResize();
+
+  const {
+    searchedMovies,
+    searchValue,
+    storageSearchValue,
+    searchedMoviesSaved,
+    isIncludedFilter,
+    isSavedMoviesFilterShort,
+    setSearchedMovies,
+    setSearchValue,
+    setIncludedFilter,
+    setSavedMoviesFilterShort,
+    handlehMoviesSearc,
+    handleSavedMoviesSearch,
+    handleFilterMovies,
+    handleSavedMoviesFilter,
+    handleSearchValue,
+    handleStorageSearchValue,
+    clearMoviesSaved,
+    handleSearchingFinish,
+  } = useOfFilterAndSearch({ isMovies, storedMovies, setErrorMovies, setIsSearching });
+
+  const {
+    isVisibleMovies,
+    isAllMovies,
+    setIsVisibleMovies,
+    handleVisibleMovies,
+    handleResizeOfVisibleMovies,
+    handleOtherVisibleMovies,
+    countVisibleMovies,
+  } = useDisplayMovies({ width, searchedMovies });
+
   
   function handleSignIn() {
     setlogOn(true);
@@ -39,27 +81,18 @@ function App() {
   }
 
   React.useEffect(() => {
-    setIsMovies(movies.filter((movie, index) => index < 7));
+    setIsMovies(JSON.parse(localStorage.getItem("movies")));
   }, []);
 
-  React.useEffect(()=>{
-    countsSeeMovies();
-  },[isMovies]);
+  React.useEffect(() => {
+    if (isVisibleMovies && isVisibleMovies.length !== 0) {
+      countVisibleMovies();
+    }
+  }, [isVisibleMovies]);
 
-  function handleSeeMovies() {
-    numberMovies++;
-    setIsMovies([
-      ...isMovies,
-      ...movies.filter(
-        (movie, index) =>
-          index >= (7 * numberMovies) && index < (7 * (numberMovies + 1))
-      ),
-    ]);
-  }
-
-  function countsSeeMovies() {
-    if (setIsMovies.length === movies.length) setAllMovies(true);
-  } 
+  React.useEffect(() => {
+    searchedMovies && isVisibleMovies && handleResizeOfVisibleMovies();
+  }, [width]);
   
   return (
     <div className="page">
@@ -70,7 +103,7 @@ function App() {
         <Route exact path="/sign-up" element={<Register onSubmit={handleSignUp} />}/>
         <Route exact path="/sign-in" element={<Login onSubmit={handleSignIn} />}/>
         <Route exact path="/profile" element={<Profile onSubmit={handleProfile} onSignOut={handleSignOut} />}/>
-        <Route exact path="/movies" element={<Movies isMovies={isMovies} allMovies={allMovies} onSeeMovies={handleSeeMovies} />}/>
+        <Route exact path="/movies" element={<Movies isMovies={isMovies} allMovies={isVisibleMovies} onSeeMovies={handleOtherVisibleMovies} />}/>
         <Route exact path="/saved-movies" element={<SavedMovies isMovies={isMovies} />}/>
 
         <Route path="/404" element={<PageNotFound />}/>

@@ -12,5 +12,5 @@ const handleResponse = (res) => {
 export const getMovies = () => {
     return fetch(`${MOVIES_URL}`, {
     })
-    .then(this.handleResponse)
+    .then(response => handleResponse(response));
 }
