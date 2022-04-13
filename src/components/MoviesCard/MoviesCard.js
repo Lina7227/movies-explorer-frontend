@@ -6,7 +6,7 @@ import './MoviesCard.css';
 function MoviesCard(props) {
     const location = useLocation();
     const isLocationMoviesSaved = location.pathname === '/saved-movies';
-
+    const MOVIES_SERVER_URL  = "https://api.nomoreparties.co";
     const [isAddCard, setAddACardSaved ] = React.useState(false);
     const [isDelete, setIsDelete] = React.useState(false);
     let cardSaveButtonClassName = `card__emotion ${isAddCard ? "card__emotion_active" : "card__emotion"}`;
@@ -37,10 +37,12 @@ function MoviesCard(props) {
     }
 
     return (
-        <li onMouseOver={handleDeleteButtonVisible} onMouseLeave={handleDeleteeButtonHidden} className="card">
+        <li
+            onMouseOver={handleDeleteButtonVisible}
+            onMouseLeave={handleDeleteeButtonHidden} className="card">
             <div className="card__description">
                 <div className="card__info">
-                    <h2 className="card__title">{props.movie.name}</h2>
+                    <h2 className="card__title">{props.movie.nameRU}</h2>
                     <p className="card__length">{`${ handleMovieLength().hours !== 0 ? `${handleMovieLength().hours}ч ` : "" } ${handleMovieLength().minutes}м`}
                     </p>
                 </div>
@@ -63,15 +65,15 @@ function MoviesCard(props) {
                 }
             </div>
             <a
-                href={props.movie.trailerLink}
+                href={props.movie.trailerLink || props.movie.trailer}
                 target="_blank"
                 className="card__trailer"                
                 rel="noopener noreferrer"
             >
                 <img
                     className="card__image"
-                    src={props.movie.link}
-                    alt={props.movie.name}/>
+                    src={`${!isLocationMoviesSaved ? MOVIES_SERVER_URL + props.movie.image.url : props.movie.image}`}
+                    alt={props.movie.nameRU}/>
             </a>
       </li>
     );

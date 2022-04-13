@@ -1,10 +1,10 @@
 import React from 'react'
 import './NoResult.css';
 
-function NoResult() {
+function NoResult(props) {
     return (
         <div className="noResult">
-            <p className="noResult__text">К сожалению, по вашему запросу ничего не найдено.</p>
+            <p className="noResult__text">{props.text}</p>
         </div>
     );
 }

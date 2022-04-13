@@ -82,17 +82,54 @@ function App() {
 
   React.useEffect(() => {
     setIsMovies(JSON.parse(localStorage.getItem("movies")));
-  }, []);
+    checkDeviceWidth();
+    changeDeviceWidth();
+    setIncludedFilter(JSON.parse(localStorage.getItem("isIncludedFilter")) || false);
+    setSavedMoviesFilterShort(JSON.parse(localStorage.getItem("isSavedMoviesFilterShort")) || false);
+    setSearchValue("");
+  },// eslint-disable-next-line react-hooks/exhaustive-deps
+   []);
+
+  // React.useEffect(() => {
+  //   setlogOn && getMoviesSaved();
+  // }, [setlogOn]);
+
+  React.useEffect(() => {
+    if (searchedMovies) {
+      if (searchedMovies.length === 0) {
+        setIsVisibleMovies(searchedMovies);
+      } else {
+        handleVisibleMovies()
+      }
+    }
+  },// eslint-disable-next-line react-hooks/exhaustive-deps 
+    [searchedMovies]
+  );
 
   React.useEffect(() => {
     if (isVisibleMovies && isVisibleMovies.length !== 0) {
       countVisibleMovies();
     }
-  }, [isVisibleMovies]);
+  }, // eslint-disable-next-line react-hooks/exhaustive-deps
+    [isVisibleMovies]
+  );
 
   React.useEffect(() => {
     searchedMovies && isVisibleMovies && handleResizeOfVisibleMovies();
-  }, [width]);
+  }, // eslint-disable-next-line react-hooks/exhaustive-deps
+    [width]
+  );
+
+  React.useEffect(() => {
+    if (Array.isArray(storedMovies)) {
+      handleSavedMoviesSearch(storageSearchValue);
+    }
+  }, // eslint-disable-next-line react-hooks/exhaustive-deps
+    [
+    searchValue,
+    storedMovies,
+    isSavedMoviesFilterShort,
+  ]);
   
   return (
     <div className="page">
@@ -103,7 +140,25 @@ function App() {
         <Route exact path="/sign-up" element={<Register onSubmit={handleSignUp} />}/>
         <Route exact path="/sign-in" element={<Login onSubmit={handleSignIn} />}/>
         <Route exact path="/profile" element={<Profile onSubmit={handleProfile} onSignOut={handleSignOut} />}/>
-        <Route exact path="/movies" element={<Movies isMovies={isMovies} allMovies={isVisibleMovies} onSeeMovies={handleOtherVisibleMovies} />}/>
+
+        <Route
+          exact path="/movies"
+          element={<Movies
+                    islogOn={islogOn}
+                    isAllMovies={isAllMovies}
+                    isErrorMovies={isErrorMovies}
+                    isSearching={isSearching}
+                    storedMovies={storedMovies}
+                    isIncludedFilter={isIncludedFilter}
+                    isVisibleMovies={isVisibleMovies}
+                    onMoviesSearch={handleSearchValue}
+                    onMoviesFilter={handleFilterMovies}
+                    onOtherVisibleMovies={handleOtherVisibleMovies}
+                    onSeeMovies={handleOtherVisibleMovies}
+                    onSearchingFinish={handleSearchingFinish}
+                  />}
+        />
+
         <Route exact path="/saved-movies" element={<SavedMovies isMovies={isMovies} />}/>
 
         <Route path="/404" element={<PageNotFound />}/>

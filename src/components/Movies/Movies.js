@@ -4,12 +4,24 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Preloader from '../Preloader/Preloader';
 import './Movies.css';
 
-function Movies({isMovies, allMovies, onSeeMovies}) {
+function Movies(props) {
     return (
         <section className="content movies">
-            <SearchForm />
-            {/* <Preloader /> */}
-            <MoviesCardList isMovies={isMovies} allMovies={allMovies} onSeeMovies={onSeeMovies} />
+            <SearchForm
+                onMoviesSearch={props.onMoviesSearch}
+                onMoviesFilter={props.onMoviesFilter}
+                isIncludedFilter={props.isIncludedFilter}
+            />
+            { !props.isSearching && <Preloader /> }
+            <MoviesCardList
+                isVisibleMovies={props.isVisibleMovies}
+                isAllMovies={props.isAllMovies}
+                isErrorMovies={props.isErrorMovies}
+                isSearching={props.isSearching}
+                storedMovies={props.storedMovies}
+                onOtherVisibleMovies={props.onOtherVisibleMovies}
+                
+            />
         </section>
     );
 }
