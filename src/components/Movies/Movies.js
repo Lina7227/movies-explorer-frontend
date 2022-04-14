@@ -20,6 +20,8 @@ function Movies(props) {
                 isSearching={props.isSearching}
                 storedMovies={props.storedMovies}
                 onOtherVisibleMovies={props.onOtherVisibleMovies}
+                saveOfMovies={props.saveOfMovies}
+                deleteOfMovieSaved={props.deleteOfMovieSaved}
                 
             />
         </section>

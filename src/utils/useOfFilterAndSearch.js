@@ -7,9 +7,9 @@ function useOfFilterAndSearch({ isMovies, storedMovies, setErrorMovies, setIsSea
     const [storageSearchValue, setStorageSearchValue] = React.useState("");
     const [searchedMoviesSaved, setSearchedMoviesSaved] =
     React.useState();
-    const [isIncludedFilter, setIncludedFilter] = React.useState(null);
+    const [isIncludedFilter, setIncludedFilter] = React.useState(false);
     const [isSavedMoviesFilterShort, setSavedMoviesFilterShort] =
-    React.useState(null);
+    React.useState(false);
     const shortMovies = 40;
 
     function handleSearching(movie, moviesSearching) {
@@ -55,7 +55,7 @@ function useOfFilterAndSearch({ isMovies, storedMovies, setErrorMovies, setIsSea
             setSearchedMovies(filteredSearchedMovies);
         } else {
             searchValue &&
-            localStorage.setItem("searchedMovies", JSON.stringify(isSearchedMovies));
+            localStorage.setItem("isSearchedMovies", JSON.stringify(isSearchedMovies));
             setSearchedMovies(isSearchedMovies);
         }
     }
