@@ -26,7 +26,7 @@ function usePersonalProfile(
     const location = useLocation();
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = React.useState(false);
-    const [isAptly, setIsAptly] = React.useEffect(false);
+    const [isAptly, setIsAptly] = React.useState(false);
 
     function handleIsToken() {
         
@@ -70,8 +70,9 @@ function usePersonalProfile(
     function handleIsRegister(data) {
         register(data)
           .then((res) => {
-            setCurrentUser(res);
+            console.log(data)
             handleIsLogin(data);
+            setCurrentUser(res);
             setFormDisabled(true);
           })
           .catch((err) => {

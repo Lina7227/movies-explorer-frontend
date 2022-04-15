@@ -1,22 +1,27 @@
 import React from 'react';
 import { isMobile } from 'react-device-detect';
 import { useLocation } from 'react-router-dom';
+import CurrentUserContext from '../../contexts/CurrentUserContext'
 import './MoviesCard.css';
 
 function MoviesCard(props) {
     const location = useLocation();
     const isLocationMoviesSaved = location.pathname === '/saved-movies';
-    const MOVIES_SERVER_URL  = "https://api.nomoreparties.co";
-    const [isAddCard, setAddACardSaved ] = React.useState(false);
+    const currentUser = React.useContext(CurrentUserContext);
+    // const [isAddCard, setAddACardSaved ] = React.useState(false);
     const [isDelete, setIsDelete] = React.useState(false);
-    let cardSaveButtonClassName = `card__emotion ${isAddCard ? "card__emotion_active" : "card__emotion"}`;
+    const MOVIES_SERVER_URL  = "https://api.nomoreparties.co";
+
+    const isCardSaved = props.storedMovies.find((evt) => evt.props.movieId === props.movie.id && evt.owner === currentUser._id);
+    
+    let cardSaveButtonClassName = `card__emotion ${isCardSaved ? "card__emotion_active" : "card__emotion"}`;
 
     function handleAddSaved() {
-        isAddCard ? setAddACardSaved(false) : setAddACardSaved(true);
+        return !isCardSaved ? props.saveOfMovies(props.movie) : handleDeleteSaved();
     }
 
     function handleDeleteSaved() {
-        setAddACardSaved(false);
+        props.deleteOfMovieSaved(props.movie.id || props.movie.movieId);
     }
 
     function handleDeleteButtonVisible() {

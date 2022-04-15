@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, Routes, Navigate, useNavigate } from 'react-router-dom';
+import CurrentUserContext from '../../contexts/CurrentUserContext'
 import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
@@ -12,7 +13,6 @@ import SavedMovies from '../SavedMovies/SavedMovies';
 import PageNotFound from '../PageNotFound/PageNotFound';
 import PopupError from '../PopupError/PopupError';
 import ProtectedRoute from '../ProtectedRoute';
-import CurrentUserContext from '../contexts/CurrentUserContext';
 import useDisplayMovies from '../../utils/useDisplayMovies';
 import useDeviceResize from '../../utils/useDeviceResize';
 import useOfFilterAndSearch from '../../utils/useOfFilterAndSearch';
@@ -106,6 +106,7 @@ function App() {
   );
   
   React.useEffect(() => {
+    handleIsToken();
     setIsMovies(JSON.parse(localStorage.getItem("movies")));
     checkDeviceWidth();
     changeDeviceWidth();
@@ -183,7 +184,7 @@ function App() {
             exact
             path="/sign-up" 
             element={<Register
-              onSubmit={handleIsRegister}
+              handleIsRegister={handleIsRegister}
               isFormDisabled={isFormDisabled}
             />}
           />
@@ -193,66 +194,78 @@ function App() {
             path="/sign-in"
             element={<Login
               islogOn={islogOn}
-              onSubmit={handleIsLogin}
+              handleIsLogin={handleIsLogin}
               isFormDisabled={isFormDisabled}
             />}
           />
           
-          <ProtectedRoute
+          <Route
             exact
             path="/profile"
-            component={Profile}
-            isLoading={isLoading}
-            onUpdeteProfile={handleUpdateProfile}
-            onSignOut={handleSignOut}
-            isAptly={isAptly}
-            isFormDisabled={isFormDisabled}
+            element={
+              <ProtectedRoute
+                component={Profile}
+                isLoading={isLoading}
+                onUpdeteProfile={handleUpdateProfile}
+                onSignOut={handleSignOut}
+                isAptly={isAptly}
+                isFormDisabled={isFormDisabled}
+              />
+            }
           />
 
-          <ProtectedRoute
+          <Route
             exact
             path="/movies"
-            component={Movies}
-            islogOn={isLoading}
-            isAllMovies={isAllMovies}
-            isErrorMovies={isErrorMovies}
-            isSearching={isSearching}
-            storedMovies={storedMovies}
-            isIncludedFilter={isIncludedFilter}
-            isVisibleMovies={isVisibleMovies}
-            onMoviesSearch={handleSearchValue}
-            onMoviesFilter={handleFilterMovies}
-            onOtherVisibleMovies={handleOtherVisibleMovies}
-            onSeeMovies={handleOtherVisibleMovies}
-            onSearchingFinish={handleSearchingFinish}
-            saveOfMovies={saveOfMovies}
-            deleteOfMovieSaved={deleteOfMovieSaved}
+            element={
+              <ProtectedRoute
+                component={Movies}
+                islogOn={isLoading}
+                isAllMovies={isAllMovies}
+                isErrorMovies={isErrorMovies}
+                isSearching={isSearching}
+                storedMovies={storedMovies}
+                isIncludedFilter={isIncludedFilter}
+                isVisibleMovies={isVisibleMovies}
+                onMoviesSearch={handleSearchValue}
+                onMoviesFilter={handleFilterMovies}
+                onOtherVisibleMovies={handleOtherVisibleMovies}
+                onSeeMovies={handleOtherVisibleMovies}
+                onSearchingFinish={handleSearchingFinish}
+                saveOfMovies={saveOfMovies}
+                deleteOfMovieSaved={deleteOfMovieSaved}
+              />
+            }
           />
 
-          <ProtectedRoute
+          <Route
             exact
             path="/saved-movies"
-            component={SavedMovies}
-            islogOn={isLoading}
-            isErrorMovies={isErrorMovies}
-            isSavedMoviesFilterShort={isSavedMoviesFilterShort}
-            isVisibleMovies={isVisibleMovies}
-            storedMovies={storedMovies}
-            onMoviesSearch={handleStorageSearchValue}
-            onClearQuery={clearMoviesSaved}
-            onMoviesFilter={handleSavedMoviesFilter}
-            saveOfMovies={saveOfMovies}
-            deleteOfMovieSaved={deleteOfMovieSaved}
+            element={
+              <ProtectedRoute
+                component={SavedMovies}
+                islogOn={isLoading}
+                isErrorMovies={isErrorMovies}
+                isSavedMoviesFilterShort={isSavedMoviesFilterShort}
+                isVisibleMovies={isVisibleMovies}
+                storedMovies={storedMovies}
+                onMoviesSearch={handleStorageSearchValue}
+                onClearQuery={clearMoviesSaved}
+                onMoviesFilter={handleSavedMoviesFilter}
+                saveOfMovies={saveOfMovies}
+                deleteOfMovieSaved={deleteOfMovieSaved}
+              />
+            }
           />
 
           <Route path="/404" element={<PageNotFound />}/>
 
-          <Navigate replace to="/404" />
+          {/* <Navigate replace to="/404" /> */}
           
         </Routes>
         
         <Footer />
-        <PopupError />
+        <PopupError textError={isError.textError} isActive={isError.isActive} />
 
       </CurrentUserContext.Provider>
 

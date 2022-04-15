@@ -13,6 +13,7 @@ const handleResponse = (res) => {
 
 // регистрация
 export const register = ({name, email, password}) => {
+    console.log({name, email, password})
     return fetch(`${BASE_URL}/signup`, {
         method: "POST",
         credentials: "include",
@@ -21,8 +22,8 @@ export const register = ({name, email, password}) => {
         },
         body: JSON.stringify({
             "name": name,
-            "password": password,
-            "email": email
+            "email": email,
+            "password": password
         }),
     })
     .then(response => handleResponse(response));
