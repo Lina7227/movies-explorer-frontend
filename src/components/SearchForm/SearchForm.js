@@ -1,47 +1,25 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
-import SearchFormError from '../SearchFormError/SearchFormError';
 import './SearchForm.css';
+import { messageKeyWordMovies } from '../../utils/utils';
 
-function SearchForm(props) {
-    const location = useLocation();
-    const isLocationMoviesSaved = location.pathname === "/saved-movies";
 
-    const [isEmpty, setEmpty] = React.useState(false);
-    const [searchedMovieValue, setSearchedMovieValue] = React.useState("");
-    const [isClearQuery, setClearQuery] = React.useState(false);
-
+function SearchForm(props) { 
+    function handelIsSearchMovies(evt) {
+        props.setSearchMovies(evt.target.value);
+    }
 
     function handleSubmit(evt) {
         evt.preventDefault();
-        const queryMovies = searchedMovieValue.trim();
-        if (!isClearQuery) {
-            if (queryMovies.length === 0) {
-                setEmpty(true);
-                setSearchedMovieValue("");
-                setTimeout(() => setEmpty(false),4000);
-            } else {
-                setEmpty(false);
-                props.onMoviesSearch(queryMovies);
-                setClearQuery(true);
-            }
-        } else {
-            setSearchedMovieValue("");
-            setClearQuery(false);
-            if (isLocationMoviesSaved) props.onClearQuery();
+        if (!props.searchMovies) {
+            props.setMessageSearchResult(messageKeyWordMovies);
+            return;
         }
-    }
 
-    function handleChange(evt) {
-        setSearchedMovieValue(evt.target.value);
-        setClearQuery(false);
-        
-        if (isLocationMoviesSaved && evt.target.value.length === 0) {
-            setSearchedMovieValue("");
-            setClearQuery(false);
-            props.onClearQuery()
-        }
+        props.setIsPreloader(true);
+        props.setMessageSearchResult(null);
+        props.onGetMovies();
+
     }
 
     return (
@@ -50,19 +28,20 @@ function SearchForm(props) {
                 <form
                     onSubmit={handleSubmit}
                     name="search-films" 
-                    className="form-search">
+                    className="form-search"
+                    noValidate>
                         <div className="search-films__container search-films__container_decktop">
                             <svg className="search-films__icon"></svg>
                             <input 
                             id="search" 
                             name="search"
                             type="text"
-                            value={searchedMovieValue}
+                            value={props.searchMovies || ""}
                             className="search-films__input"
                             required
                             minLength="2"
                             placeholder="Фильм"
-                            onChange={handleChange}
+                            onChange={handelIsSearchMovies}
                             />
                             <button
                                 type="submit"
@@ -71,11 +50,14 @@ function SearchForm(props) {
                             >
                             </button>
                             <FilterCheckbox
-                                onMoviesFilter={props.onMoviesFilter}
-                                isIncludedFilter={props.isIncludedFilter}
+                                changeChecked={props.changeChecked}
+                                onGetMovies={props.onGetMovies}
+                                searchShortMovies={props.searchShortMovies}
+                                setSearchShortMovies={props.setSearchShortMovies}
+                                isChecked={props.isChecked}
+                                isCheckedSaved={props.isCheckedSaved}
                             />
-                        </div>
-                        <SearchFormError isEmpty={isEmpty} />
+                        </div>  
                 </form>
             </div>
                 
@@ -91,12 +73,12 @@ function SearchForm(props) {
                             id="search" 
                             name="search"
                             type="text"
-                            value={searchedMovieValue}
+                            value={props.searchMovies || ""}
                             className="search-films__input"
                             required
                             minLength="2"
                             placeholder="Фильм"
-                            onChange={handleChange}
+                            onChange={handelIsSearchMovies}
                             />
                         <button
                             type="submit"
@@ -105,10 +87,13 @@ function SearchForm(props) {
                         >
                         </button> 
                     </div>
-                    <SearchFormError isEmpty={isEmpty} />
-                    <FilterCheckbox 
-                        onMoviesFilter={props.onMoviesFilter}
-                        isIncludedFilter={props.isIncludedFilter}
+                    <FilterCheckbox
+                        changeChecked={props.changeChecked}
+                        onGetMovies={props.onGetMovies}
+                        searchShortMovies={props.searchShortMovies}
+                        setSearchShortMovies={props.setSearchShortMovies}
+                        isChecked={props.isChecked}
+                        isCheckedSaved={props.isCheckedSaved}
                     />
                 </form>
             </div>

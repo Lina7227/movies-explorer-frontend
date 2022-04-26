@@ -4,18 +4,20 @@ import PageForm from '../PageForm/PageForm';
 import FormEmail from '../FormEmail/FormEmail';
 import FormPassword from '../FormPassword/FormPassword';
 import FormName from '../FormName/FormName';
-import useValidaty from '../../utils/useValidaty';
+import useValidaty from '../../hooks/useValidaty';
 
 function Register(props) {
     const {values, errors, isValid, handleChange, resetForm} = useValidaty();
 
     React.useEffect(() => {
         resetForm();
-    },[]);
+    },// eslint-disable-next-line
+    []);
 
     function handleRegister(evt) {
         evt.preventDefault();
         props.handleIsRegister({name: values.name, email: values.email, password: values.password});
+        props.setIsAuth(true);
     }
 
     return (
@@ -36,19 +38,19 @@ function Register(props) {
                     values={values}
                     errors={errors}
                     handleChange={handleChange}
-                    isAuth={true}
+                    isAuth={props.isAuth}
                 />
                 <FormEmail
                     values={values}
                     errors={errors}
                     handleChange={handleChange}
-                    isAuth={true}
+                    isAuth={props.isAuth}
                 />
                 <FormPassword
                     values={values}
                     errors={errors}
                     handleChange={handleChange}
-                    isAuth={true}
+                    isAuth={props.isAuth}
                 />
 
             </PageForm>

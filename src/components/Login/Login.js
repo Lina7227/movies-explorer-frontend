@@ -3,22 +3,21 @@ import './Login.css';
 import PageForm from '../PageForm/PageForm';
 import FormEmail from '../FormEmail/FormEmail';
 import FormPassword from '../FormPassword/FormPassword';
-import useValidaty from '../../utils/useValidaty';
+import useValidaty from '../../hooks/useValidaty';
 
 function Login(props) {
     const {values, errors, isValid, handleChange, resetForm} = useValidaty();
 
     React.useEffect(() => {
         resetForm();
-    },[]);
+    },// eslint-disable-next-line
+    []);
 
     
     function handleLogin(evt) {
         evt.preventDefault();
         props.handleIsLogin(values);
     }
-
-    
 
     return (
         <>
@@ -40,13 +39,13 @@ function Login(props) {
                             values={values}
                             errors={errors}
                             handleChange={handleChange}
-                            isAuth={true}
+                            isAuth={props.isAuth}
                         />
                         <FormPassword
                             values={values}
                             errors={errors}
                             handleChange={handleChange}
-                            isAuth={true}
+                            isAuth={props.isAuth}
                         />
 
                     </PageForm>

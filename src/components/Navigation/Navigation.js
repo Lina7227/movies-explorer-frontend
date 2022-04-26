@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLocation, NavLink, useNavigate } from 'react-router-dom';
+import { useLocation, NavLink, useHistory } from 'react-router-dom';
 import './Navigation.css';
 
 function Navigation(props) {
@@ -12,19 +12,19 @@ function Navigation(props) {
     const [isMenu, setIsMenu] = React.useState(false);
     const [isActiveMovies, setIsActiveMovies] = React.useState(false);
     const [isActiveMoviesSaved, setIsActiveMoviesSaved] = React.useState(false);
-    const navigate = useNavigate();
+    const history = useHistory ();
 
     function handleBasic() {
         setIsMenu(false);
-        navigate.push('/');
+        history.push('/');
     }
 
     function handleSignIn() {
-        setIsMenu(false);
+        
     }    
     
     function handleProfile() {
-        setIsMenu(false);
+        
     }
     
     function handleMovies() {
@@ -67,6 +67,27 @@ function Navigation(props) {
                     </div>
                 }
 
+                { props.islogOn && islocationBasic &&
+                    <div className={`navigation__conteiner-centered ${isMenu ? "navigation__container-centered_type_column" : ""}`}>
+                        <button
+                            type="button"
+                            aria-label="Кнопка закрытия меню"
+                            className={`navigate__button-close ${isMenu ? "navigate__button-close_active" : ""}`}
+                            onClick={handleMenuClose}>
+                        </button>
+                        <div className={`navigation__container-film ${isMenu ? "navigation__container-film_type_column" : ""}`}>
+                            {isMenu && <NavLink onClick={handleBasic} className={`navigation__nav-item ${({ isActive }) => isActive && islocationBasic ? "navigation__nav-item_type_column" : ""}`} activeClassName={``} to={"/"}>Главная</NavLink>}
+                            <NavLink onClick={handleMovies} className={`navigation__nav-item ${isActiveMovies && !isMenu ? "navigation__nav-item_active" : ""} ${isActiveMovies && isMenu ? "navigation__nav-item_type_column" : ""}`} to={"/movies"}>Фильмы</NavLink>
+                            <NavLink onClick={handleSavedMovies} className={`navigation__nav-item ${isActiveMoviesSaved && !isMenu ? "navigation__nav-item_active" : ""} ${isActiveMoviesSaved && isMenu ? "navigation__nav-item_type_column" : ""}`} to={"/saved-movies"}>Сохраненные фильмы</NavLink>
+                        </div>
+                        <div className={`navigation__container-office ${isMenu ? "navigation__container-office_type_column " : ""}`}>
+                            <NavLink onClick={handleProfile} className="navigation__nav-item" to={"/profile"}>
+                                Аккаунт
+                            </NavLink>
+                        </div>
+                    </div>
+                }
+
                 {islocationAllMovies &&
                     <div className={`navigation__conteiner-centered ${isMenu ? "navigation__container-centered_type_column" : ""}`}>
                         <button
@@ -76,7 +97,7 @@ function Navigation(props) {
                             onClick={handleMenuClose}>
                         </button>
                         <div className={`navigation__container-film ${isMenu ? "navigation__container-film_type_column" : ""}`}>
-                            {isMenu && <NavLink onClick={handleBasic} className={`navigation__nav-item ${({ isActive }) => isActive && islocationBasic ? "navigation__nav-item_type_column" : ""}`} to={"/"}>Главная</NavLink>}
+                            {isMenu && <NavLink onClick={handleBasic} className={`navigation__nav-item ${({ isActive }) => isActive && islocationBasic ? "navigation__nav-item_type_column" : ""}`} activeClassName={``} to={"/"}>Главная</NavLink>}
                             <NavLink onClick={handleMovies} className={`navigation__nav-item ${isActiveMovies && !isMenu ? "navigation__nav-item_active" : ""} ${isActiveMovies && isMenu ? "navigation__nav-item_type_column" : ""}`} to={"/movies"}>Фильмы</NavLink>
                             <NavLink onClick={handleSavedMovies} className={`navigation__nav-item ${isActiveMoviesSaved && !isMenu ? "navigation__nav-item_active" : ""} ${isActiveMoviesSaved && isMenu ? "navigation__nav-item_type_column" : ""}`} to={"/saved-movies"}>Сохраненные фильмы</NavLink>
                         </div>

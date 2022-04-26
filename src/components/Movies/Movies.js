@@ -2,28 +2,43 @@ import React from 'react';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Preloader from '../Preloader/Preloader';
+import SearchFormError from '../SearchFormError/SearchFormError';
 import './Movies.css';
 
 function Movies(props) {
     return (
         <section className="content movies">
             <SearchForm
-                onMoviesSearch={props.onMoviesSearch}
-                onMoviesFilter={props.onMoviesFilter}
-                isIncludedFilter={props.isIncludedFilter}
+                searchMovies={props.searchMovies}
+                searchShortMovies={props.searchShortMovies}
+                messageSearchResult={props.messageSearchResult}
+                setSearchMovies={props.setSearchMovies}
+                setSearchShortMovies={props.setSearchShortMovies}
+                setIsPreloader={props.setIsPreloader}
+                setMessageSearchResult={props.setMessageSearchResult}
+                onGetMovies={props.onGetMovies}
+                changeChecked={props.changeChecked}
+                isChecked={props.isChecked}
             />
-            { !props.isSearching && <Preloader /> }
-            <MoviesCardList
-                isVisibleMovies={props.isVisibleMovies}
-                isAllMovies={props.isAllMovies}
-                isErrorMovies={props.isErrorMovies}
-                isSearching={props.isSearching}
+            {props.isPreloader ? (
+                <Preloader />
+            ) : props.messageSearchResult ? (
+                <SearchFormError messageSearchResult={props.messageSearchResult} />
+            ) : props.movies ? (
+                <MoviesCardList
+                movies={props.movies}
                 storedMovies={props.storedMovies}
-                onOtherVisibleMovies={props.onOtherVisibleMovies}
-                saveOfMovies={props.saveOfMovies}
-                deleteOfMovieSaved={props.deleteOfMovieSaved}
+                isChecked={props.isChecked}
+                isLiked={props.isLiked}
+                searchShortMovies={props.searchShortMovies}
+                onMoviesSaved={props.onMoviesSaved}
+                onDeleteMoviesSaved={props.onDeleteMoviesSaved}
+                handleMovieLike={props.handleMovieLike}
+                onGetMovies={props.onGetMovies}
                 
-            />
+                />
+            ) : ""}
+            
         </section>
     );
 }

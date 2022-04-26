@@ -1,10 +1,10 @@
 import React from 'react';
-// import { useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import '../FormPassword/FormPassword.css';
 
 function FormEmail(props) {
-    // const location = useLocation();
-    // const islocationProfile = location.pathname === "/profile";
+    const location = useLocation();
+    const islocationProfile = location.pathname === "/profile";    
 
     return (
         <div className="info__container">
@@ -15,14 +15,14 @@ function FormEmail(props) {
             name="email" 
             type="email"
             value={props.values.email || ""}
-            className={`info__input ${!props.isAuth ? "info__input_active" : ""} ${props.isAuth ? "info__input_profile" : ""} ${props.errors.email ? "info__input_error" : "" }`}
+            className={`info__input ${islocationProfile ? "info__input_profile" : ""} ${props.errors.email ? "info__input_error" : "" }`}
             required
             placeholder="E-mail"
             minLength="2"
             maxLength="30"
             onChange={props.handleChange}
             />
-            <span className={`info__error ${props.errors.email ? "pinfo__error_active" : "" }`}>{props.errors.email}</span>
+            <span className={`info__error ${props.errors.email ? "info__error_active" : "" }`}>{props.errors.email}</span>
         </div>
     );
 }

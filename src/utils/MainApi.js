@@ -1,7 +1,4 @@
-export const MOVIES_SERVER_URL  = "https://api.nomoreparties.co";
-export const BASE_URL = process.env.NODE_ENV === "production"
-  ? "https://api.gallery-movies.nomoredomains.xyz"
-  : "http://localhost:3000";
+import { MOVIES_SERVER_URL, BASE_URL } from './utils';
 
 // возврат ответа сервера об ошибке
 const handleResponse = (res) => {
@@ -13,12 +10,12 @@ const handleResponse = (res) => {
 
 // регистрация
 export const register = ({name, email, password}) => {
-    console.log({name, email, password})
     return fetch(`${BASE_URL}/signup`, {
         method: "POST",
         credentials: "include",
         headers: {
           "Content-Type": "application/json",
+          "Accept": "application/json",
         },
         body: JSON.stringify({
             "name": name,
@@ -36,6 +33,7 @@ export const login = ({email, password}) => {
         credentials: "include",
         headers: {
             "Content-Type": "application/json",
+            "Accept": "application/json",
         },
         body: JSON.stringify({
             "password": password,
@@ -46,18 +44,17 @@ export const login = ({email, password}) => {
 }
 
 // выход из профиля
-export const signOut = (email) => {
-    return fetch(`${BASE_URL}/signout`, {
-        method: "POST",
+export const signOut = () => {
+    return fetch(`${BASE_URL}/logout`, {
+        method: "GET",
         credentials: "include",
         headers: {
             "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            email: email,
-        }),
+            "Accept": "application/json",
+        }, 
     })
     .then(response => handleResponse(response));
+
 }
 
 // редактирование профиля
@@ -67,6 +64,7 @@ export const setProfile = ({name, email}) => {
             credentials: "include",
             headers: {
                 "Content-Type": "application/json",
+                "Accept": "application/json",
             },
             body: JSON.stringify({
                 name: name,
@@ -76,49 +74,55 @@ export const setProfile = ({name, email}) => {
     .then(response => handleResponse(response));
 }
 
-// получение информации о пользователе
+// проверка профиля
+export const getUser = () => {
+    return fetch(`${BASE_URL}/users/me`, {
+        method: "GET",
+        credentials: "include",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+        },
+    })
+    .then(response => handleResponse(response));
+}
+
+// проверка профиля
 export const checkToken = () => {
     return fetch(`${BASE_URL}/users/me`, {
         method: "GET",
         credentials: "include",
         headers: {
             "Content-Type": "application/json",
+            "Accept": "application/json",
         },
     })
     .then(response => handleResponse(response));
 }
 
+
 // сохранение фильма
 export const saveMovie = (movie) => {
-    const {
-        country,
-        director,
-        duration,
-        year,
-        description,
-        trailerLink,
-        nameRU,
-        nameEN,
-    } = movie;
-
+    
     return fetch(`${BASE_URL}/movies`, {
         method: "POST",
         credentials: "include",
         headers: {
             "Content-Type": "application/json",
+            "Accept": "application/json",
         },
         body: JSON.stringify({
-            country: `${country}`,
-            director: `${director}`,
-            duration: +duration,
-            year: `${year}`,
-            description: `${description}`,
-            image: `${MOVIES_SERVER_URL}${movie.image.url}`,
-            trailer: `${trailerLink}`,
-            nameRU: `${nameRU}`,
-            nameEN: `${nameEN}`,
-            thumbnail: `${MOVIES_SERVER_URL}${movie.image.formats.thumbnail.url}`,
+            country: movie.country || movie.director,
+            director: movie.director,
+            duration: movie.duration,
+            year: movie.year,
+            description: movie.description,
+            image: MOVIES_SERVER_URL+movie.image.url,
+            trailerLink: movie.trailerLink || MOVIES_SERVER_URL+movie.image.url,
+            thumbnail: MOVIES_SERVER_URL+movie.image.url,
             movieId: +movie.id,
+            nameRU: movie.nameRU || movie.nameEN,
+            nameEN: movie.nameEN || movie.nameRU,
         }),
     })
     .then(response => handleResponse(response));  
@@ -127,7 +131,12 @@ export const saveMovie = (movie) => {
 // получение сохраненных фильмов
 export const getMoviesSaved = () => {
     return fetch(`${BASE_URL}/movies`, {
+        method: "GET",
         credentials: "include",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+        },
     })
     .then(response => handleResponse(response));
 }
@@ -137,6 +146,10 @@ export const deleteMovieSaved = (movieId) => {
     return fetch(`${BASE_URL}/movies/${movieId}`, {
         method: "DELETE",
         credentials: "include",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+        },
     })
     .then(response => handleResponse(response));
   }

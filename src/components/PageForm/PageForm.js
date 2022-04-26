@@ -6,7 +6,7 @@ function PageForm(props) {
     const location = useLocation();
     const islocationPrivateUp = location.pathname === "/sign-up";
     const islocationProfile = location.pathname === "/profile";
-
+ 
     return (
         <div className={`auth ${props.isAuth ? "auth__login" : ""}`}>
             <h2 className={`auth__welcome ${props.isAuth ? "auth__welcome_login" : ""} ${islocationProfile ? "auth__welcome_profile" : ""}`}>
@@ -21,15 +21,13 @@ function PageForm(props) {
 
                     {props.children}
 
-                {/* <button 
-                    type="submit" 
-                    className={`auth__button ${(props.isAuth && props.buttonState) ? "auth__button_active" : "auth__button_inactive"} ${islocationPrivateUp ? "auth__button_active_up" : " "} ${islocationProfile ? "auth__button_profile" : ""}`}
-                    disabled={!props.buttonState ? true : ""}>
-                    {props.buttonText}
-                </button> */}
                 <button 
                     type="submit" 
-                    className={`auth__button ${props.isAuth ? "auth__button_active" : ""} ${!props.buttonState ? "auth__button_inactive" : ""} ${islocationPrivateUp ? "auth__button_active_up" : " "} ${islocationProfile ? "auth__button_profile" : ""}`}
+                    className={`auth__button 
+                    ${!props.isInputs ? "auth__button_active" : ""} 
+                    ${!props.buttonState ? "auth__button_inactive" : ""} 
+                    ${islocationPrivateUp ? "auth__button_active_up" : " "} 
+                    ${islocationProfile ? "auth__button_profile" : "" }`}
                     disabled={!props.buttonState ? true : ""}>
                     {props.buttonText}
                 </button>

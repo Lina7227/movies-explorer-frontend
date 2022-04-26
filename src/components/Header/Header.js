@@ -19,7 +19,7 @@ function Header(props) {
             alt="Логотип"
           />
             </NavLink>
-            {!(islocationPrivateIn || islocationPrivateUp) && <Navigation islogOn={props.isLoading} />}
+            {!(islocationPrivateIn || islocationPrivateUp) && <Navigation islogOn={props.islogOn} />}
         </header>
     );
 }
