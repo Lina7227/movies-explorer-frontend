@@ -1,24 +1,56 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 import './SearchForm.css';
 import { messageKeyWordMovies } from '../../utils/utils';
 
 
 function SearchForm(props) { 
+    const location = useLocation();
+    const isLocationMovies = location.pathname === '/movies';
+
+    const [currentValue, setCurrentValue] = React.useState();
+    const [isEmpty, setIsEmpty] = React.useState(true);
+
+    
     function handelIsSearchMovies(evt) {
-        props.setSearchMovies(evt.target.value);
+        setCurrentValue(evt.target.value)
+        if (isLocationMovies) {
+            props.setSearchMovies(evt.target.value);
+        } else {
+            props.setSearchSavedMovies(evt.target.value);
+        }
     }
 
-    function handleSubmit(evt) {
-        evt.preventDefault();
-        if (!props.searchMovies) {
-            props.setMessageSearchResult(messageKeyWordMovies);
-            return;
+    React.useEffect(() => {
+        if (!isLocationMovies) {
+            if (currentValue === '' && isEmpty === true) {
+                setIsEmpty(false)
+            } else if (currentValue === '' && isEmpty === false) {
+                props.onGetMovies();
+            }
         }
+    },// eslint-disable-next-line
+    [currentValue, isEmpty]);
 
+    function handleSubmit(evt) {
+        
+        evt.preventDefault();
+
+        if (isLocationMovies) {
+            if (!props.searchMovies ) {
+                props.setMessageSearchResult(messageKeyWordMovies);
+                return;
+            }
+        } else {
+            if (!props.searchSavedMovies ) {
+                props.setMessageSearchResult(messageKeyWordMovies);
+                return;
+            }
+        }
         props.setIsPreloader(true);
-        props.setMessageSearchResult(null);
         props.onGetMovies();
+        setTimeout(() =>  props.setIsPreloader(false), 700);
 
     }
 
@@ -36,10 +68,10 @@ function SearchForm(props) {
                             id="search" 
                             name="search"
                             type="text"
-                            value={props.searchMovies || ""}
+                            value={isLocationMovies ? props.searchMovies || "" : props.searchSavedMovies || ""}
                             className="search-films__input"
                             required
-                            minLength="2"
+                            minLength="1"
                             placeholder="Фильм"
                             onChange={handelIsSearchMovies}
                             />
@@ -73,7 +105,7 @@ function SearchForm(props) {
                             id="search" 
                             name="search"
                             type="text"
-                            value={props.searchMovies || ""}
+                            value={isLocationMovies ? props.searchMovies || "" : props.searchSavedMovies || ""}
                             className="search-films__input"
                             required
                             minLength="2"

@@ -8,11 +8,26 @@ import useValidaty from '../../hooks/useValidaty';
 
 function Register(props) {
     const {values, errors, isValid, handleChange, resetForm} = useValidaty();
+    const [isInputs, setisInputs] = React.useState(false);
+
 
     React.useEffect(() => {
         resetForm();
     },// eslint-disable-next-line
     []);
+
+    React.useEffect(() => {
+        checkInputs();
+    },// eslint-disable-next-line
+    [values]);
+
+    function checkInputs () {
+        if ((values.name && values.email && values.password) !== undefined) {
+            setisInputs(true);
+        } else {
+            setisInputs(false);
+        }
+    }
 
     function handleRegister(evt) {
         evt.preventDefault();
@@ -32,7 +47,7 @@ function Register(props) {
                 onRedirectLink="/sign-in"
                 textLinkRedirect="Войти"
                 isFormDisabled={props.isFormDisabled}
-                buttonState={!props.isFormDisabled&&isValid}
+                buttonState={ isInputs ? isValid : false}
             >
                 <FormName
                     values={values}

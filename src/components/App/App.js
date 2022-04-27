@@ -35,12 +35,15 @@ function App() {
   const [currentUser, setCurrentUser] = React.useState({}); // текущий пользователь
   const [movies, setMovies] = React.useState([]); // фильмы, получаемые со стороннего сервера и отображаемые
   const [storedMovies, setStoredMovies] = React.useState([]); // сохраненные фильмы
-  const [searchMovies, setSearchMovies] = React.useState(""); // фильмы, которые ищут
+  const [searchStoredMovies, setSearchStoredMovies] = React.useState([]); // сохраненные фильмы
+  const [searchMovies, setSearchMovies] = React.useState(""); // фильмы, которые ищут на основной странице
+  const [searchSavedMovies, setSearchSavedMovies] = React.useState(""); // фильмы, которые ищут среди сохраненных фильмов
   const [searchShortMovies, setSearchShortMovies] = React.useState(""); // короткометражки на главной странице
   const [ShortSavedMovies, setShortSavedMovies] = React.useState(""); // короткометражки у сохраненных
   const [isFormDisabled, setFormDisabled] = React.useState(false); // форма
   const [isPreloader, setIsPreloader] = React.useState(false); // прелоадер
   const [messageSearchResult, setMessageSearchResult] = React.useState(""); // сообщение о результатах поиска фильмов
+  const [messageSearchSavedResult, setMessageSearchSavedResult] = React.useState(""); // сообщение о результатах поиска фильмов
   const [isChecked, setChecked] = React.useState(false); // чекбокс короткометражек на главной странице
   const [isCheckedSaved, setCheckedSaved] = React.useState(false); // чекбокс короткометражек на странице сохраненных фильмов
   const [isLiked, setLiked] = React.useState(false); // статус лайков
@@ -49,7 +52,11 @@ function App() {
   const history = useHistory();
   const location = useLocation();
   const isLocationMovies = location.pathname === '/movies';
+  const isLocationSavedMovies = location.pathname === '/saved-movies';
+
   const userId = localStorage.getItem("id") || "";
+
+
 
 
   React.useEffect(() => {
@@ -83,6 +90,13 @@ function App() {
           console.log(err);
           setMessageSearchResult(messageErrorMovies);
         })
+    }
+    
+  },// eslint-disable-next-line
+  [isLoading]);
+
+  React.useEffect(() => {
+    if (isLoading === true) {
       getMoviesSaved()
         .then((event) => {
           setStoredMovies(event);
@@ -94,9 +108,8 @@ function App() {
           setMessageSearchResult(messageErrorMovies);
         })
     }
-    
-  },// eslint-disable-next-line
-  [isLoading]);
+  }, // eslint-disable-next-line
+  [isLoading, isLocationSavedMovies]);
 
   const handleLocalStorageMovies = React.useCallback(() => {
 
@@ -144,7 +157,9 @@ function App() {
         }
       })
       .catch((err) => {
-        console.log(err);
+        setPopup(true);
+        if (err === "Ошибка: 401") setPopupText("Ошибка авторизации. Возможно вы не зарегистрированы или ввели неверные данные");
+        setTimeout(() => setPopup(false), 2000);
       })
       .finally(()=> {
         setFormDisabled(false)
@@ -162,7 +177,7 @@ function App() {
         setPopup(true);
         if (err === "Ошибка: 400") setPopupText("Переданы некорректные данные");
         if (err === "Ошибка: 409") setPopupText("Пользователь с таким E-mail уже существует");
-        if (err === "Ошибка: 400") setPopupText("Ошибка сервера");
+        if (err === "Ошибка: 500") setPopupText("Ошибка сервера");
         setTimeout(() => setPopup(false), 2000);
       })
       .finally(()=> {
@@ -202,32 +217,40 @@ function App() {
       });
   }
 
+
+
+
   // поиск фильмов 
   const getMoviesFilter = () => {
     if (isLocationMovies) {
       const newMovies = JSON.parse(localStorage.getItem("movies"));
       const handleMovies = handleSearchMovies(newMovies, searchMovies);
-      setIsPreloader(false);
 
       if (handleMovies.length !== 0) {
           setMovies(handleMovies);
           localStorage.setItem("resultMovies", JSON.stringify(handleMovies));
           localStorage.setItem("searchedMovieWord", JSON.stringify(searchMovies));
         } else {
-          setMessageSearchResult(() => messageNotFound);
+          setMessageSearchResult(messageNotFound);
         }
-    } else {
+    } else { // поиск фильмов в saved-movies
       const newMovies = storedMovies;
-      const handleMovies = handleSearchMovies(newMovies, searchMovies);
-      setIsPreloader(false);
+      const handleMovies = handleSearchMovies(newMovies, searchSavedMovies);
 
       if (handleMovies.length !== 0) {
-          setStoredMovies(handleMovies);
+          setSearchStoredMovies(handleMovies);
         } else {
-          setMessageSearchResult(messageNotFound);
+          setMessageSearchSavedResult(messageNotFound);
         }
       }
   }
+
+  React.useEffect(() => {
+
+    setSearchStoredMovies([]);
+     
+  }, // eslint-disable-next-line
+  [!isLocationSavedMovies]);
 
   // фильтрация коротких фильмов на главной странице
   function handleDurationFilter(searchMovies) {
@@ -342,6 +365,8 @@ function App() {
     .then(() => {
       setStoredMovies(storedMovies.filter((movie) => movie.movieId !== dislikedMovie.movieId));
       localStorage.removeItem("storedMovies");
+      setSearchStoredMovies(searchStoredMovies.filter((movie) => movie.movieId !== dislikedMovie.movieId));
+
     })
     .catch((err) => {
      console.log(err);
@@ -426,14 +451,15 @@ function App() {
             isLiked={isLiked}
             movies={movies}
             storedMovies={storedMovies}
+            searchStoredMovies={searchStoredMovies}
             isPreloader={isPreloader}
-            searchMovies={searchMovies}
+            searchSavedMovies={searchSavedMovies}
             searchShortMovies={ShortSavedMovies}
-            messageSearchResult={messageSearchResult}
+            messageSearchSavedResult={messageSearchSavedResult}
             setIsPreloader={setIsPreloader}
-            setSearchMovies={setSearchMovies}
+            setSearchSavedMovies={setSearchSavedMovies}
             setSearchShortMovies={setShortSavedMovies}
-            setMessageSearchResult={setMessageSearchResult}
+            setMessageSearchSavedResult={setMessageSearchSavedResult}
             onGetMovies={getMoviesFilter}
             isCheckedSaved={isCheckedSaved}
             onMoviesSaved={handleMoviesSaved}

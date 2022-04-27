@@ -6,17 +6,17 @@ import SearchFormError from '../SearchFormError/SearchFormError';
 import './SavedMovies.css';
 
 function SavedMovies(props) {
-
+    
     return (
         <section className="content movies">
             <SearchForm
-                searchMovies={props.searchMovies}
+                searchSavedMovies={props.searchSavedMovies}
                 searchShortMovies={props.searchShortMovies}
-                messageSearchResult={props.messageSearchResult}
-                setSearchMovies={props.setSearchMovies}
+                messageSearchResult={props.messageSearchSavedResult}
+                setSearchSavedMovies={props.setSearchSavedMovies}
                 setSearchShortMovies={props.setSearchShortMovies}
                 setIsPreloader={props.setIsPreloader}
-                setMessageSearchResult={props.setMessageSearchResult}
+                setMessageSearchResult={props.setMessageSearchSavedResult}
                 onGetMovies={props.onGetMovies}
                 changeChecked={props.changeChecked}
                 isCheckedSaved={props.isCheckedSaved}
@@ -24,11 +24,11 @@ function SavedMovies(props) {
             />
             {props.isPreloader ? (
                 <Preloader />
-            ) : props.messageSearchResult ? (
-                <SearchFormError messageSearchResult={props.messageSearchResult} />
+            ) : props.messageSearchSavedResult ? (
+                <SearchFormError messageSearchResult={props.messageSearchSavedResult} />
             ) : props.movies ? (
                 <MoviesCardList
-                movies={props.storedMovies}
+                movies={props.searchStoredMovies.length !== 0 ? props.searchStoredMovies : props.storedMovies}
                 storedMovies={props.storedMovies}
                 isCheckedSaved={props.isCheckedSaved}
                 isLiked={props.isLiked}

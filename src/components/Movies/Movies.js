@@ -15,6 +15,7 @@ function Movies(props) {
                 setSearchMovies={props.setSearchMovies}
                 setSearchShortMovies={props.setSearchShortMovies}
                 setIsPreloader={props.setIsPreloader}
+                isPreloader={props.isPreloader}
                 setMessageSearchResult={props.setMessageSearchResult}
                 onGetMovies={props.onGetMovies}
                 changeChecked={props.changeChecked}
@@ -24,7 +25,7 @@ function Movies(props) {
                 <Preloader />
             ) : props.messageSearchResult ? (
                 <SearchFormError messageSearchResult={props.messageSearchResult} />
-            ) : props.movies ? (
+            ) : props.movies.length ? (
                 <MoviesCardList
                 movies={props.movies}
                 storedMovies={props.storedMovies}

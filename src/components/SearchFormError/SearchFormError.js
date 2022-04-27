@@ -1,15 +1,15 @@
 import React from 'react';
 import './SearchFormError.css';
 
-function SearchFormError({ isEmpty }) {
+function SearchFormError(props) {
 
     return (
         <span
-            className={`search-form-error${
-                isEmpty ? "search-form-error_active" : ""
+            className={`search-form-error ${
+                props.messageSearchResult ? "search-form-error_active" : ""
             }`}
         >
-            Введите ключевое слово
+            {props.messageSearchResult}
         </span>
     )
 }
