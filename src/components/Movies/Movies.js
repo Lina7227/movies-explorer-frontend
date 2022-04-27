@@ -6,6 +6,8 @@ import SearchFormError from '../SearchFormError/SearchFormError';
 import './Movies.css';
 
 function Movies(props) {
+
+    
     return (
         <section className="content movies">
             <SearchForm

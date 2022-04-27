@@ -40,11 +40,13 @@ function SearchForm(props) {
         if (isLocationMovies) {
             if (!props.searchMovies ) {
                 props.setMessageSearchResult(messageKeyWordMovies);
+                setTimeout(() => props.setMessageSearchResult(null), 3000);
                 return;
             }
         } else {
             if (!props.searchSavedMovies ) {
                 props.setMessageSearchResult(messageKeyWordMovies);
+                setTimeout(() => props.setMessageSearchResult(null), 3000);
                 return;
             }
         }

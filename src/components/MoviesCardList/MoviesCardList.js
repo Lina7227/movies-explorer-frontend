@@ -12,7 +12,7 @@ function MoviesCardList(props) {
     const [buttonMoviesVisible, setButtonMoviesVisible] = React.useState(true); // кнопка добавления фильмов
 
     const movies= props.isChecked || props.isCheckedSaved ? props.searchShortMovies : props.movies;
-
+ 
     function handleMoviesCount() {
         if (document.documentElement.clientWidth > 800) {
             setMoviesCount(7);
