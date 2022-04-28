@@ -232,7 +232,6 @@ function App() {
           localStorage.setItem("searchedMovieWord", JSON.stringify(searchMovies));
         } else {
           setMessageSearchResult(messageNotFound);
-          setTimeout(() => setMessageSearchResult(null), 5000);
         }
     } else { // поиск фильмов в saved-movies
       const newMovies = storedMovies;
@@ -242,7 +241,6 @@ function App() {
           setSearchStoredMovies(handleMovies);
         } else {
           setMessageSearchSavedResult(messageNotFound);
-          setTimeout(() => setMessageSearchSavedResult(null), 5000);
         }
       }
   }
