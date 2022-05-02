@@ -1,8 +1,10 @@
 .form__desctop {
     display: flex;
+    flex-direction: column;
     margin: 0;
     padding: 0;
     width: 100%;
+    border-bottom: 1px solid #E8E8E8;
 }
 
 .form__modile {
@@ -10,10 +12,9 @@
 }
 
 .form-search {
-    padding: 0 0 69px;
+    padding: 0 0 50px;
     display: flex;
     width: 100%;
-    border-bottom: 1px solid #E8E8E8;
 }
 
 .search-films__container {
@@ -183,7 +184,7 @@
 
 @media (max-width: 800px) {
     .form-search {
-        padding: 0 0 109px;
+        padding: 0 0 90px;
     }
 
     .search-films__input {
@@ -255,6 +256,7 @@
         margin: 0;
         padding: 0;
         width: 100%;
+        border-bottom: 1px solid #E8E8E8;
     }
     
 
