@@ -37,4 +37,5 @@
 Проект в разработке.
 
 ## [Макет проекта](https://www.figma.com/file/DnY0ImCEwR9nLVgWqVbuky/Diploma?node-id=932%3A3401)
-**Домен для проекта:** gallery-movies.nomoredomains.xyz;
+## [Ссылка на бэкенд проекта](https://github.com/Lina7227/movies-explorer-api)
+## [Ссылка на сайт проекта](https://movies-explorer-frontend-black.vercel.app)

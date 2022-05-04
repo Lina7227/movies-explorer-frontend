@@ -5,7 +5,7 @@ export const messageKeyWordMovies = "Нужно ввести ключевое с
 export const MOVIES_SERVER_URL  = "https://api.nomoreparties.co";
 
 export const BASE_URL = process.env.NODE_ENV === "production"
-  ? "https://diploma-gallery-movies.herokuapp.com/"
+  ? "https://diploma-gallery-movies.herokuapp.com"
   : "http://localhost:3000";
 
 export  const DURATION_LENGTH = 40;
